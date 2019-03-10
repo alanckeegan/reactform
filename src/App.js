@@ -1,29 +1,51 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
+import {Form, FormGroup, Label, Input, Button} from 'reactstrap'
 import './App.css'
 
+
+
 class App extends Component {
+
+state = {
+  email: "",
+  password: ""
+}
+
+handleChange = e => {
+  this.setState({
+    [e.target.name]: e.target.value
+  })
+}
+
+onSubmit = () => {
+  console.log(this.state)
+}
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={ logo } className="App-logo" alt="logo" />
-          <p>
-            Edit
-            <code>
-              src/App.js
-            </code>
-             and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Form onSubmit>
+          <FormGroup>
+            <Label for="exampleEmail">Email</Label>
+            <Input
+              type="email"
+              name="email"
+              id="exampleEmail"
+              placeholder="with a placeholder"
+              onChange={ e => this.handleChange(e)} />
+          </FormGroup>
+          <FormGroup>
+            <Label for="examplePassword">Password</Label>
+            <Input type="password"
+              name="password"
+              id="examplePassword"
+              placeholder="password placeholder"
+              onChange = { e => this.handleChange(e)} />
+          </FormGroup>
+          <Button onClick={this.onSubmit}>Submit</Button>
+        </Form>
       </div>
     )
   }
